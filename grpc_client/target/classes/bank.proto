@@ -1,0 +1,24 @@
+syntax="proto3";
+
+
+service BankService{
+  // unary model
+  rpc convert(ConvertCurrencyRequest) returns(ConvertCurrencyResponse);
+  // server streaming
+  rpc getCurrencyStream(ConvertCurrencyRequest) returns (stream ConvertCurrencyResponse);
+  // client streaming
+  rpc performStream( stream ConvertCurrencyRequest) returns (ConvertCurrencyResponse);
+}
+
+message ConvertCurrencyRequest{
+    string currencyFrom=1;
+    string currencyTo =2 ;
+    float amount = 3;
+}
+
+message ConvertCurrencyResponse{
+  string currencyFrom=1;
+  string currencyTo =2 ;
+  float amount = 3;
+  float result =4;
+}
